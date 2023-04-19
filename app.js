@@ -10,6 +10,7 @@ const catalogRouter = require('./routes/catalog')
 
 const compression = require('compression');
 const helmet = require("helmet");
+require("dotenv").config();
 
 
 var app = express();
@@ -24,7 +25,8 @@ const limiter = RateLimit({
 // Set up mongoose connection
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-const mongoDB = "mongodb+srv://ravi13:jackrack@cluster0.txm3bue.mongodb.net/?retryWrites=true&w=majority";
+
+const mongoDB = process.env.MONGODB_URI;
 
 main().catch(err=> console.log(err));
 async function main() {
